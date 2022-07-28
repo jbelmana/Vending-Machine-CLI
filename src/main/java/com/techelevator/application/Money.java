@@ -27,7 +27,7 @@ public class Money {
 
     //Subtract
 
-    //pravate
+    //private
     // nickle = 0.05
     // dime = 0.10
     // qtr = 0.25

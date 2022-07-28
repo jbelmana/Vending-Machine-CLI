@@ -29,16 +29,6 @@ public class UserInput {
         if (option.equals("d")) {
    //         System.out.println(Inventory.get); //display inventory
         } else if (option.equals("p")) {
-            System.out.println("(M) Feed Money");
-            System.out.println("(S) Select Item");
-            System.out.println("(F) Finish Transaction");
-            String purchaseMenuInput = scanner.nextLine();
-            if(purchaseMenuInput.equalsIgnoreCase("M")) {
-                System.out.println("Only U.S. Bills in the Amount (1), (5), (10), or (20) can be accepted.");
-                String moneyScanned = scanner.nextLine();
-                int moneyFed = Integer.parseInt(moneyScanned);
-                //            BigDecimal currentBalance = money.getBalance();
-
 
             } else if(purchaseMenuInput.equalsIgnoreCase("S")) {
      //           BigDecimal currentBalance = money.getBalance();
