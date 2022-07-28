@@ -1,5 +1,7 @@
 package com.techelevator.ui;
 
+import java.math.BigDecimal;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 /**
@@ -25,20 +27,35 @@ public class UserInput {
         String option = selectedOption.trim().toLowerCase();
         System.out.println("option = " + option);
         if (option.equals("d")) {
-            return "display";
-        }
-        else if (option.equals("p")) {
-            return "purchase";
-        }
-        else if (option.equals("e")) {
+   //         System.out.println(Inventory.get); //display inventory
+        } else if (option.equals("p")) {
+            System.out.println("(M) Feed Money");
+            System.out.println("(S) Select Item");
+            System.out.println("(F) Finish Transaction");
+            String purchaseMenuInput = scanner.nextLine();
+            if(purchaseMenuInput.equalsIgnoreCase("M")) {
+                System.out.println("Only U.S. Bills in the Amount (1), (5), (10), or (20) can be accepted.");
+                String moneyScanned = scanner.nextLine();
+                int moneyFed = Integer.parseInt(moneyScanned);
+                //            BigDecimal currentBalance = money.getBalance();
+
+
+            } else if(purchaseMenuInput.equalsIgnoreCase("S")) {
+     //           BigDecimal currentBalance = money.getBalance();
+
+            }
+
+
+        } else if (option.equals("e")) {
             return "exit";
-        }
-        else {
+        } else {
             return "";
         }
 
+
+        return selectedOption;
     }
 
-
 }
+
 

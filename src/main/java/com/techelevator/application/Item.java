@@ -12,7 +12,7 @@ public abstract class Item {
         this.itemName = itemName;
         this.slotIdentifer = slotIdentifer;
         this.price = price;
-        this.qauntityAvailable = qauntityAvailable;
+        qauntityAvailable = 6;
     }
 
     public String getItemName() {

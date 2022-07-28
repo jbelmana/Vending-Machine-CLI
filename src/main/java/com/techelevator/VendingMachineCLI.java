@@ -12,14 +12,6 @@ public class VendingMachineCLI {
 
 		VendingMachine vendingMachine = new VendingMachine();
 
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Welcome to Taste Elevator vending machine!");
-		System.out.println("Please select one of the following options: ");
-		System.out.println("(D) Display Vending Items");
-		System.out.println("(P) Purchase");
-		System.out.println("(E) Exit");
-		String mainOption = scanner.nextLine();
-
 		vendingMachine.run();
 	}
 }

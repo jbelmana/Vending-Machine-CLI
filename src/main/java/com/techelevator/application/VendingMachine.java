@@ -14,9 +14,11 @@ public class VendingMachine {
             }
             else if(choice.equals("purchase")) {
                 // make a purchase
+
             }
             else if(choice.equals("exit")) {
                 // good bye
+                System.out.println("Good bye");
                 System.exit(0);
                 break;
             }
