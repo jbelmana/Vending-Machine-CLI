@@ -17,6 +17,7 @@ public class VendingMachine {
             }
             else if(choice.equals("exit")) {
                 // good bye
+                System.exit(0);
                 break;
             }
         }
