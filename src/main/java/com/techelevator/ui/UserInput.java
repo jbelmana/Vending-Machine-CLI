@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 /**
  * Responsibilities: This class should handle receiving ALL input from the User
- *
+ * <p>
  * Dependencies: None
  */
 public class UserInput {
@@ -26,26 +26,14 @@ public class UserInput {
         String selectedOption = scanner.nextLine();
         String option = selectedOption.trim().toLowerCase();
         System.out.println("option = " + option);
-        if (option.equals("d")) {
-   //         System.out.println(Inventory.get); //display inventory
-        } else if (option.equals("p")) {
-
-            } else if(purchaseMenuInput.equalsIgnoreCase("S")) {
-     //           BigDecimal currentBalance = money.getBalance();
-
-            }
-
-
-        } else if (option.equals("e")) {
-            return "exit";
-        } else {
-            return "";
-        }
 
 
         return selectedOption;
+
     }
 
 }
+
+
 
 
