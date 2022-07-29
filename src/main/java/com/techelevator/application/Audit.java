@@ -26,10 +26,15 @@ public class Audit {
         String date = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a").format(new Date());
         return date;
     }
-        /// need to create event string message
+
     public static void timeAudit(String date, String event, BigDecimal currentBalance, BigDecimal balanceAfter){
         try (PrintWriter ghostWriter =  new PrintWriter(new FileOutputStream(auditFile, true))){
             DecimalFormat bigToDec = new DecimalFormat("0.00");
+
+
+      //      String event = userinput choice tbd
+
+
             ghostWriter.println(">" + date + " " + event + " " + bigToDec.format(currentBalance) + bigToDec.format(balanceAfter));
             ghostWriter.flush();
         }catch(IOException e){

@@ -5,7 +5,7 @@ import com.techelevator.ui.UserOutput;
 
 public class VendingMachine {
     public void run() {
-        while(true) {
+        while (true) {
             UserOutput.displayHomeScreen();
             String choice = UserInput.getHomeScreenOption();
             System.out.println(choice);
@@ -13,8 +13,6 @@ public class VendingMachine {
             if (choice.equals("d")) {
                 System.out.println("You Pressed d");
                 UserOutput.displayItemScreen();
-
-
                 //System.out.println(Inventory.get); //display inventory
             } else if (choice.equals("p")) {
                 System.out.println("You Pressed p");

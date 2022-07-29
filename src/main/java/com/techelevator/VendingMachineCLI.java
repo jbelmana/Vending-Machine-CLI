@@ -11,7 +11,6 @@ public class VendingMachineCLI {
 		//command line interface
 
 		VendingMachine vendingMachine = new VendingMachine();
-
 		vendingMachine.run();
 	}
 }
