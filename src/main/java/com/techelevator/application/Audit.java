@@ -29,7 +29,7 @@ public class Audit {
             String date = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a").format(new Date());
             try (PrintWriter ghostWriter = new PrintWriter(new FileOutputStream(auditFile, true))) {
                 DecimalFormat bigToDec = new DecimalFormat("0.00");
-                ghostWriter.println(">" + date + "\t" + event + "\t$" + bigToDec.format(currentBalance) + "\t$" + bigToDec.format(balanceAfter));
+                ghostWriter.println(">" + date + " " + String.format("%-19s", event)+ " $" + bigToDec.format(currentBalance) + " $" + bigToDec.format(balanceAfter));
                 ghostWriter.flush();
             } catch (IOException e) {
                 System.out.println("File not found.");

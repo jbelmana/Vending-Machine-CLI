@@ -10,6 +10,9 @@ import java.sql.SQLOutput;
 import java.util.Map;
 import java.util.Scanner;
 
+import static com.techelevator.application.Money.balanceString;
+import static com.techelevator.application.Money.getBalance;
+
 /**
  * Responsibilities: This class should handle receiving ALL input from the User
  * <p>
@@ -36,7 +39,7 @@ public class UserInput {
         System.out.println("(S) Select Item");
         System.out.println("(F) Finish Transaction");
         System.out.println();
-        System.out.println(Money.balanceString());
+        System.out.println(balanceString());
         System.out.println("Please select an option: ");
         String selectedOption = scanner.nextLine();
         return selectedOption;
@@ -52,19 +55,21 @@ public class UserInput {
             if (selectedOption == 1) {
                 Money.addMoney(new BigDecimal("1.00"));
                 System.out.println(Money.balanceString());
-                Audit.timedAudit("FEED MONEY:\t", previousBalance, Money.getBalance());
+                Audit.timedAudit("FEED MONEY: ", previousBalance, Money.getBalance());
             } else if (selectedOption == 5) {
                 Money.addMoney(new BigDecimal("5.00"));
                 System.out.println(Money.balanceString());
-                Audit.timedAudit("FEED MONEY:\t", previousBalance, Money.getBalance());
+                Audit.timedAudit("FEED MONEY: ", previousBalance, Money.getBalance());
             } else if (selectedOption == 10) {
                 Money.addMoney(new BigDecimal("10.00"));
                 System.out.println(Money.balanceString());
-                Audit.timedAudit("FEED MONEY:\t", previousBalance, Money.getBalance());
+                Audit.timedAudit("FEED MONEY: ", previousBalance, Money.getBalance());
             } else if (selectedOption == 20) {
                 Money.addMoney(new BigDecimal("20.00"));
                 System.out.println(Money.balanceString());
-                Audit.timedAudit("FEED MONEY:\t", previousBalance, Money.getBalance());
+                Audit.timedAudit("FEED MONEY: ", previousBalance, Money.getBalance());
+            }else {
+                System.out.println("Please Insert Valid Currency");
             }
         } catch (Exception e) {
             System.out.println("Please Insert Valid Currency");

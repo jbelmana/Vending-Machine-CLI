@@ -20,9 +20,8 @@ public class Money {
     public static void addMoney(BigDecimal depositAmount){
         balance = balance.add(depositAmount);
     }
-    public void spendMoney(BigDecimal price){
-        balance = balance.subtract(price);
-    }
+
+    public static void spendMoney(BigDecimal price){balance = balance.subtract(price);}
 
     public static String balanceString(){
         String balanceString = "Current Money Provided: $" + balance;
@@ -36,7 +35,6 @@ public class Money {
         int quarters = 0;
         int dimes = 0;
         int nickels = 0;
-        int pennies = 0;
         String changeReturned = "";
 
         BigDecimal dollar = new BigDecimal("1.00");
@@ -44,23 +42,24 @@ public class Money {
         BigDecimal dime = new BigDecimal("0.10");
         BigDecimal nickel = new BigDecimal("0.05");
 
-        BigDecimal currentBalance = getBalance();
+        BigDecimal currentBalance = balance;
 
         coins.remainder(new BigDecimal("1.00"));
+        Audit.timedAudit("CHANGE GIVEN:" , balance, new BigDecimal("0"));
 
-        while(coins.compareTo(new BigDecimal("0"))>0){
-            if(coins.compareTo(dollar) >= 0){
+        while(balance.compareTo(new BigDecimal("0"))>0){
+            if(balance.compareTo(dollar) >= 0){
                 dollars++;
-                coins = coins.subtract(dollar);
-            }else if(coins.compareTo(quarter) >= 0){
+                balance = balance.subtract(dollar);
+            }else if(balance.compareTo(quarter) >= 0){
                 quarters++;
-                coins = coins.subtract(quarter);
-            }else if(coins.compareTo(dime) >= 0){
+                balance = balance.subtract(quarter);
+            }else if(balance.compareTo(dime) >= 0){
                 dimes++;
-                coins = coins.subtract(dime);
-            }else if(coins.compareTo(nickel) >= 0){
+                balance = balance.subtract(dime);
+            }else if(balance.compareTo(nickel) >= 0){
                 nickels++;
-                coins = coins.subtract(nickel);
+                balance = balance.subtract(nickel);
             }
         }
         changeReturned = "Change returned: " + dollars + " dollars, " + quarters + " quarters, "

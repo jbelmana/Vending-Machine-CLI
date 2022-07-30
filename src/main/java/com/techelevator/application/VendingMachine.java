@@ -6,8 +6,10 @@ import com.techelevator.ui.UserOutput;
 
 
 import java.math.BigDecimal;
+import java.util.Locale;
 import java.util.Map;
 
+import static com.techelevator.application.Money.balance;
 import static com.techelevator.application.Money.getBalance;
 
 public class VendingMachine {
@@ -38,17 +40,16 @@ public class VendingMachine {
 
     public void getPurchaseOptions() {
         while (true) {
-            UserOutput.displayPurchaseScreen();
             String choice = UserInput.getPurchaseScreenOption();
             if (choice.equalsIgnoreCase("M")) {
                 UserInput.getMoneyFeederOption();
             } else if (choice.equalsIgnoreCase("S")) {
                 UserOutput.displayInventory(inventoryMap);
-                String item = UserInput.selectItemSlot();
+                String item = UserInput.selectItemSlot().toUpperCase();
                 dispenseItem(item);
             } else if (choice.equalsIgnoreCase("F")) {
                 System.out.println(Money.change());
-                Audit.timedAudit("CHANGE GIVEN:" , Money.getBalance(), new BigDecimal("0"));
+
             } else {
                 System.out.println("You Pressed the wrong thing");
             }
@@ -60,12 +61,21 @@ public class VendingMachine {
         try {
             if (inventory.getItemHashMap().containsKey(item)){
                 Item newitem = inventory.getItemHashMap().get(item);
-                newitem.decrementQuantity();
                 BigDecimal price = newitem.getPrice();
-                System.out.println("You have selected: " + newitem.getItemName() + " for $" + (getBalance().subtract(price)));
+                if(Money.getBalance().compareTo(price) == -1){
+                    System.out.println("You don't have enough money!");
+                    return;
+                }
+                if(newitem.getQuantity() == 0){
+                    System.out.println("NO LONGER AVAILABLE");
+                    return;
+                }
+                newitem.decrementQuantity();
+                System.out.println("You have selected: " + newitem.getItemName() + " for $" + newitem.getPrice());
                 System.out.println(newitem.getMessage());
                 System.out.println();
                 Audit.timedAudit(newitem.getItemName(), Money.getBalance(), (getBalance().subtract(price)));
+                Money.spendMoney(price);
             }
         } catch (Exception e) {
             System.out.println("Item slot doesn't exist.");
