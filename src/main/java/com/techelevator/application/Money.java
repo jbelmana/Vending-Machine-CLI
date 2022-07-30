@@ -1,39 +1,70 @@
 package com.techelevator.application;
 
+import com.techelevator.VendingMachineCLI;
 import com.techelevator.ui.UserInput;
 
 import java.math.BigDecimal;
 
 public class Money {
 
+    public static BigDecimal balance = new BigDecimal("0.00");
 
-    //gets current balance
-    public void feedMoney() {
-        String input = UserInput.getHomeScreenOption();
+    public static BigDecimal getBalance() {
+        return balance;
     }
 
-    public String quarters(){
-
+    public Money() {
+        this.balance = getBalance();
     }
 
-    // if input == "M"
-    //  add  money to balance
-    /**/
+    public static void addMoney(BigDecimal depositAmount){
+        balance = balance.add(depositAmount);
+    }
+    public void spendMoney(BigDecimal price){
+        balance = balance.subtract(price);
+    }
 
-    //Add to balance
+    public static String balanceString(){
+        String balanceString = "Current Money Provided: $" + balance;
+        return balanceString;
+    }
 
-    //Subtract
+    public static String change() {
+        BigDecimal coins = getBalance();
 
-    //private
-    // nickle = 0.05
-    // dime = 0.10
-    // qtr = 0.25
-    //dollar = 1.00
+        int dollars = 0;
+        int quarters = 0;
+        int dimes = 0;
+        int nickels = 0;
+        int pennies = 0;
+        String changeReturned = "";
 
+        BigDecimal dollar = new BigDecimal("1.00");
+        BigDecimal quarter = new BigDecimal("0.25");
+        BigDecimal dime = new BigDecimal("0.10");
+        BigDecimal nickel = new BigDecimal("0.05");
 
-    // convert to smallest amount of coins(CHANGE)
+        BigDecimal currentBalance = getBalance();
 
-    //return change
+        coins.remainder(new BigDecimal("1.00"));
 
-
+        while(coins.compareTo(new BigDecimal("0"))>0){
+            if(coins.compareTo(dollar) >= 0){
+                dollars++;
+                coins = coins.subtract(dollar);
+            }else if(coins.compareTo(quarter) >= 0){
+                quarters++;
+                coins = coins.subtract(quarter);
+            }else if(coins.compareTo(dime) >= 0){
+                dimes++;
+                coins = coins.subtract(dime);
+            }else if(coins.compareTo(nickel) >= 0){
+                nickels++;
+                coins = coins.subtract(nickel);
+            }
+        }
+        changeReturned = "Change returned: " + dollars + " dollars, " + quarters + " quarters, "
+        + dimes + " dimes, and " + nickels + " nickels." ;
+        return changeReturned;
+    }
 }

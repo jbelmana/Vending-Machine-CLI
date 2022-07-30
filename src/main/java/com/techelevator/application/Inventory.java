@@ -16,10 +16,18 @@ public class Inventory {
     private static String fileReader = "catering1.csv";
     private static File inventoryFile = new File(fileReader);
 
+    private Map<String, Item> itemHashMap = new HashMap<>();
+
+    public Map<String, Item> getItemHashMap() {
+        return itemHashMap;
+    }
 
     public Map<String, Item> inventoryReader() {
 
-        Map<String, Item> inventoryMap = new HashMap<>() {};
+
+
+        itemHashMap = new HashMap<>() {};
+
         try (Scanner scanInventory = new Scanner(inventoryFile)) {
             while (scanInventory.hasNextLine()) {
                 String lineOfFile = scanInventory.nextLine();
@@ -29,23 +37,23 @@ public class Inventory {
 
                     if (scanInventoryArray[3].equalsIgnoreCase("Candy")) {
                         newItem = new Candy(scanInventoryArray[1], scanInventoryArray[0], new BigDecimal(scanInventoryArray[2]));
-                        inventoryMap.put(scanInventoryArray[0], newItem);
+                        itemHashMap.put(scanInventoryArray[0], newItem);
                     } else if (scanInventoryArray[3].equalsIgnoreCase("Drink")) {
                         newItem = new Drink(scanInventoryArray[1], scanInventoryArray[0], new BigDecimal(scanInventoryArray[2]));
-                        inventoryMap.put(scanInventoryArray[0], newItem);
+                        itemHashMap.put(scanInventoryArray[0], newItem);
                     } else if (scanInventoryArray[3].equalsIgnoreCase("Gum")) {
                        newItem = new Gum(scanInventoryArray[1], scanInventoryArray[0], new BigDecimal(scanInventoryArray[2]));
-                        inventoryMap.put(scanInventoryArray[0], newItem);
+                        itemHashMap.put(scanInventoryArray[0], newItem);
                     } else if (scanInventoryArray[3].contains("Munchy")){
                         newItem = new Munchy(scanInventoryArray[1], scanInventoryArray[0], new BigDecimal(scanInventoryArray[2]));
-                        inventoryMap.put(scanInventoryArray[0], newItem);
+                        itemHashMap.put(scanInventoryArray[0], newItem);
                     }
                 }
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
         }
-        return inventoryMap;
+        return itemHashMap;
     }
 }
 

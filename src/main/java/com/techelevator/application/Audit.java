@@ -22,23 +22,18 @@ public class Audit {
         }
     }
 
-    private String getCurrentTime() {
-        String date = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a").format(new Date());
-        return date;
-    }
-
-    public static void timeAudit(String date, String event, BigDecimal currentBalance, BigDecimal balanceAfter){
-        try (PrintWriter ghostWriter =  new PrintWriter(new FileOutputStream(auditFile, true))){
-            DecimalFormat bigToDec = new DecimalFormat("0.00");
-
-
-      //      String event = userinput choice tbd
-
-
-            ghostWriter.println(">" + date + " " + event + " " + bigToDec.format(currentBalance) + bigToDec.format(balanceAfter));
-            ghostWriter.flush();
-        }catch(IOException e){
-            System.out.println("File not found.");
+    public static void timedAudit(String event, BigDecimal currentBalance, BigDecimal balanceAfter) {
+        if (!auditFile.exists()) {
+            auditFile();
+        } else if(auditFile.exists()){
+            String date = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a").format(new Date());
+            try (PrintWriter ghostWriter = new PrintWriter(new FileOutputStream(auditFile, true))) {
+                DecimalFormat bigToDec = new DecimalFormat("0.00");
+                ghostWriter.println(">" + date + "\t" + event + "\t$" + bigToDec.format(currentBalance) + "\t$" + bigToDec.format(balanceAfter));
+                ghostWriter.flush();
+            } catch (IOException e) {
+                System.out.println("File not found.");
+            }
         }
     }
 }

@@ -6,11 +6,20 @@ public abstract class Item {
     private String itemName;
     private String slotIdentifier;
     private BigDecimal price;
+    private int quantity = 6;
 
-    public Item(String itemName, String slotIdentifier, BigDecimal price) {
+    public Item(String itemName, String slotIdentifier, BigDecimal price){
         this.itemName = itemName;
         this.slotIdentifier = slotIdentifier;
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void decrementQuantity(){
+        quantity--;
     }
 
     public String getItemName() {
@@ -37,6 +46,6 @@ public abstract class Item {
         this.price = price;
     }
 
-
     public abstract String getMessage();
+
 }
