@@ -67,7 +67,7 @@ public class VendingMachine {
                     return;
                 }
                 if(newitem.getQuantity() == 0){
-                    System.out.println("NO LONGER AVAILABLE");
+                    System.err.println("NO LONGER AVAILABLE");
                     return;
                 }
                 newitem.decrementQuantity();
