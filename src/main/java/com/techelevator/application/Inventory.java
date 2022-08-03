@@ -13,7 +13,7 @@ import java.util.*;
 
 public class Inventory {
 
-    private static String fileReader = "catering1.csv";
+    private static String fileReader = "vending.csv";
     private static File inventoryFile = new File(fileReader);
 
     private Map<String, Item> itemHashMap = new HashMap<>();
@@ -51,7 +51,7 @@ public class Inventory {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
+            System.err.println("File not found.");
         }
         return itemHashMap;
     }

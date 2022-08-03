@@ -26,13 +26,17 @@ public class VendingMachine {
                 UserOutput.displayItemScreen();
                 UserOutput.displayInventory(inventoryMap);
             } else if (choice.equalsIgnoreCase("P")) {
+
                 UserOutput.displayPurchaseScreen();
                 getPurchaseOptions();
             } else if (choice.equalsIgnoreCase("E")) {
                 System.out.println("Good bye");
+                System.out.println();
                 System.exit(0);
             } else {
-                System.out.println("You Pressed the wrong thing");
+                System.out.println();
+                System.err.println("You pressed the wrong thing");
+                System.out.println();
 
             }
         }
@@ -49,9 +53,12 @@ public class VendingMachine {
                 dispenseItem(item);
             } else if (choice.equalsIgnoreCase("F")) {
                 System.out.println(Money.change());
-
+                UserOutput.displayHomeScreen();
+                UserInput.getHomeScreenOption();
             } else {
-                System.out.println("You Pressed the wrong thing");
+                System.out.println();
+                System.err.println("You pressed the wrong thing");
+                System.out.println();
             }
         }
     }
@@ -63,11 +70,13 @@ public class VendingMachine {
                 Item newitem = inventory.getItemHashMap().get(item);
                 BigDecimal price = newitem.getPrice();
                 if(Money.getBalance().compareTo(price) == -1){
-                    System.out.println("You don't have enough money!");
+                    System.err.println("You don't have enough money!");
+                    System.out.println();
                     return;
                 }
                 if(newitem.getQuantity() == 0){
                     System.err.println("NO LONGER AVAILABLE");
+                    System.out.println();
                     return;
                 }
                 newitem.decrementQuantity();
